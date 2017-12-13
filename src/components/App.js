@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import PlaidLink from './LinkES6' //'react-plaid-link'
+import PlaidLink from './LinkFORK' //'react-plaid-link'
 // import credentials from '../creds'
 
 
