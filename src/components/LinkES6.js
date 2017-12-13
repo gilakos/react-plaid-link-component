@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
+import Script from 'react-load-script'
 
 class PlaidLink extends Component {
 
@@ -11,16 +12,12 @@ class PlaidLink extends Component {
     };
   }
 
-  getScriptURL = () => {
-    return "https://cdn.plaid.com/link/v2/stable/link-initialize.js";
-  };
-
   onScriptError = () => {
     console.error("There was an issue loading the link-initialize.js script");
   };
 
   onScriptLoaded = () => {
-    window.linkHandler = Plaid.create({
+    window.linkHandler = window.Plaid.create({
       clientName: this.props.clientName,
       env: this.props.env,
       key: this.props.publicKey,
@@ -58,13 +55,19 @@ class PlaidLink extends Component {
 
   render() {
     return (
-      <button
-        onClick={this.handleOnClick}
-        disabled={this.state.disabledButton}
-        style={this.props.style}
-        className={this.props.className}>
-        <span>{this.props.buttonText}</span>
-      </button>
+      <div>
+        <button
+          onClick={this.handleOnClick}
+          disabled={this.state.disabledButton}
+          style={this.props.style}
+          className={this.props.className}>
+          <span>{this.props.buttonText}</span>
+        </button>
+        <Script
+          url="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
+          onError={this.onScriptError}
+          onLoad={this.onScriptLoaded} />
+      </div>
     );
   }
 }

@@ -1,29 +1,26 @@
 import React, { Component } from 'react'
 import './App.css'
-//import PlaidLink from './LinkES6' //'react-plaid-link'
-import credentials from '../creds'
+import PlaidLink from './LinkES6' //'react-plaid-link'
+// import credentials from '../creds'
 
 
 class App extends Component {
-  //handleOnSuccess(token, metadata) {
+  handleOnSuccess(token, metadata) {
     // send token to client server
-    //console.log(token);
-  //}
+    console.log('handleOnSuccess: ', token);
+  }
   render() {
     return (
-      <div>
-        <p>Some text.</p>
-      </div>
+      <PlaidLink
+        publicKey="6b43b4851457948a9d2b6ea1afcbb4"
+        product={["auth"]}
+        env="sandbox"
+        apiVersion="v2"
+        clientName="plaidname"
+        onSuccess={this.handleOnSuccess}
+      />
     )
   }
 }
 
 export default App
-
-/* <PlaidLink
-  publicKey="PLAID_PUBLIC_KEY"
-  product="auth"
-  env="tartan"
-  clientName="plaidname"
-  onSuccess={this.handleOnSuccess}
-/> */
