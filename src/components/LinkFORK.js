@@ -1,7 +1,6 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import Script from "react-load-script";
-const React = require("react");
-const PropTypes = require("prop-types");
+import PropTypes from "prop-types";
 
 class PlaidLink extends Component {
   constructor(props) {
